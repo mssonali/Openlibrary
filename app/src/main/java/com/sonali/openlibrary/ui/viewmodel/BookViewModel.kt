@@ -59,19 +59,6 @@ class BookViewModel @Inject constructor(private val repository: BookRepository,
                 }
         }
     }
-//    // Search function
-//    fun searchBooks(query: String) {
-//        val fullList = booklist.value ?: emptyList()
-//
-//        val filteredList = if (query.isEmpty()) {
-//            fullList // Show all books if query is empty
-//        } else {
-//            fullList.filter { it.name.contains(query, ignoreCase = true) } // Filter list
-//        }
-//
-//        _filteredBookList.value = filteredList
-//    }
-
     fun searchBooks(query: String) {
         val fullList = booklist.value ?: emptyList()
 
