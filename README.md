@@ -1,6 +1,6 @@
 # OpenLibrary 
 
-This is an Android project that integrates with OpenLibrary API to display book information.
+This is an Android project that integrates with OpenLibrary API to display library information.
 API : http://openlibrary.org/people/george08/lists.json
 
 ## Features 🚀
