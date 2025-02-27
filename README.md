@@ -4,7 +4,7 @@ This is an Android project that integrates with OpenLibrary API to display libra
 API : http://openlibrary.org/people/george08/lists.json
 
 ## Features 🚀
-- See list of libraries
+- See list of libraries offline/online
 - Search for library by name
 
 ## Installation 📥
