@@ -15,7 +15,7 @@
         android:orientation="vertical"
         tools:context=".ui.view.MainActivity">
 
-        <!-- Toolbar -->
+         Toolbar
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -24,7 +24,12 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="Libraries"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
         <!-- RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

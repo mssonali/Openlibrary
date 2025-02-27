@@ -12,6 +12,7 @@ import com.sonali.openlibrary.local.dao.db.LibraryDatabase
 import com.sonali.openlibrary.local.dao.entity.Entry
 import com.sonali.openlibrary.repository.BookRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,18 +29,21 @@ class BookViewModel @Inject constructor(private val repository: BookRepository,
     val error: LiveData<String> get() = _error
     private val _filteredBookList = MutableLiveData<List<Entry>>() // Filtered list
     val filteredBookList: LiveData<List<Entry>> = _filteredBookList
-    private val _isLoading = MutableLiveData<Boolean>()
+     val _isLoading = MutableLiveData<Boolean>()
 
     fun getBookList() {
         viewModelScope.launch {
+            delay(2000) // Simulating network delay
                 try {
                     if(Utils.isInterConnectionIsAvailable(application)){
+                        _isLoading.value = true
                         val response = repository.getBookList()
                         response?.entries?.let { entries: List<Entry> ->
                             libraryDao.deleteAlllibraries()
                             libraryDao.insertBook(entries)  // Insert into Room
                         }
                         booklist.postValue(response?.entries)
+                        _isLoading.value = false // Hide Loader
                     }else{
                         val bookDao = LibraryDatabase.getDatabase(application).libraryDao().getAllLibraries()
                         if(!bookDao.isEmpty()) {
@@ -50,6 +54,7 @@ class BookViewModel @Inject constructor(private val repository: BookRepository,
                     }
 
                 } catch (e: Exception) {
+                    _isLoading.value = false // Hide Loader
                     _error.postValue("Failed to load library: ${e.message}")
                 }
         }
